@@ -1,0 +1,73 @@
+#include<iostream>
+#include <ctime>
+
+using namespace std;
+
+void init_array(int a[], int, int del = 100);
+
+int find_min(int a[], int size, int index);
+
+void sort(int a[], int size);
+
+void print(int a[], int size);
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	srand((unsigned)time(0));
+
+	const int size = 10;
+	int a[size];
+	cout << "Initialize of array" << endl;
+	init_array(a, size);
+	sort(a, size);
+	cout << "Sorting an array" << endl;
+	print(a, size);
+	return 0;
+}
+
+void init_array(int a[], int size, int del)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % (del + 1);
+		cout << "A" << "[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl;
+}
+
+int find_min(int a[], int size, int index)
+{
+	int min = a[index];
+	int in = index;
+	for (int i = index + 1; i < size; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			in = i;
+		}
+	}
+	return in;
+}
+
+void sort(int a[], int size)
+{
+	int temp;
+	for (int i = 0; i < size; i++)
+	{
+		temp = a[i];
+		int in = find_min(a, size, i);
+		a[i] = a[in];
+		a[in] = temp;
+	}
+}
+
+void print(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << "A[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl;
+}
