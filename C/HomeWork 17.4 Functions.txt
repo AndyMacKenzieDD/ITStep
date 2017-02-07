@@ -1,0 +1,97 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+
+void init(int a[], int size);
+
+int find_min(int a[], int size, int index);
+
+int find_max(int a[], int size, int index);
+
+void sort1(int a[], int size, int index);
+
+void sort(int a[], int size, int index);
+
+int main()
+{
+	srand((unsigned)time(0));
+	const int size = 10;
+	int a[size];
+	init(a, size);
+	cout << "Initialize an array" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << "A[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl << "Minimum value of array: " << "A[" << (find_min(a, size, 0) + 1) << "] = " << a[find_min(a, size, 0)] << endl;
+	sort(a, size, find_min(a, size, 0));
+	sort1(a, size, find_min(a, size, 0));
+	for (int i = 0; i < size; i++)
+	{
+		cout << "A[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl;
+	return 0;
+}
+
+void sort(int a[], int size, int index)
+{
+	int temp;
+	for (int i = index; i < size; i++)
+	{
+		temp = a[i];
+		int in = find_min(a, size, i);
+		a[i] = a[in];
+		a[in] = temp;
+	}
+}
+
+void sort1(int a[], int size, int index)
+{
+	int temp;
+	for (int i = 0; i < index; i++)
+	{
+		temp = a[i];
+		int in = find_max(a, size, i);
+		a[i] = a[in];
+		a[in] = temp;
+	}
+}
+
+int find_max(int a[], int size, int index)
+{
+	int max = a[index];
+	int in = index;
+	for (int i = index; i < find_min(a, size, 0); i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+			in = i;
+		}
+	}
+	return in;
+}
+
+int find_min(int a[], int size, int index)
+{
+	int min = a[index];
+	int in = index;
+	for (int i = index + 1; i < size; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			in = i;
+		}
+	}
+	return in;
+}
+
+void init(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % 100 + 1;
+	}
+}
