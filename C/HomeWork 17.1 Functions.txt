@@ -1,0 +1,29 @@
+#include<iostream> 
+#include<ctime> 
+using namespace std;
+
+void values(int a = 10, int b = 20, int c = 30);
+
+int main()
+{
+	cout << "Without set" << endl;
+	values();
+	cout << "With first parametr" << endl;
+	values(3);
+	cout << "With first and second parametr" << endl;
+	values(5, 11);
+	cout << "With first, second and third parametr" << endl;
+	values(13, 16, 42);
+}
+
+void values(int a, int b, int c)
+{
+	for (int i = 1; i <= 1000; i++)
+	{
+		if (i%a == 0 && i%b == 0 && i%b == 0)
+		{
+			cout << i << " ";
+		}
+	}
+	cout << endl << endl;
+}
