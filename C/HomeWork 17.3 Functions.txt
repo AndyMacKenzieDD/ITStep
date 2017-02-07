@@ -1,0 +1,90 @@
+#include<iostream>
+#include <ctime>
+
+using namespace std;
+
+void init_array(int a[], int);
+
+int bin_search(int a[], int size, int key);
+
+int find_min(int a[], int size, int index);
+
+void sort(int a[], int size);
+
+void print(int a[], int size);
+
+int main()
+{
+	srand((unsigned)time(0));
+
+	const int size = 10;
+	int a[size];
+	int key;
+	cout << "Initialize an array: " << endl;
+	init_array(a, size);
+	sort(a, size);
+	cout << "Sorting..." << endl;
+	print(a, size);
+	cout << "Enter tne number: ";
+	cin >> key;
+	cout << "Number must be in the position number: A[" << bin_search(a, size, key) + 1 << "]" << endl;
+	return 0;
+}
+
+void init_array(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % 100 + 1;
+		cout << "A[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl;
+}
+
+int bin_search(int a[], int size, int key)
+{
+	int left = 0, right = size, mid = (left + right) / 2;
+	while (left < right)
+	{
+		mid = (left + right) / 2;
+		if (key <= a[mid]) right = mid;
+		else left = mid + 1;
+	}
+	if (key == a[right]) return right;
+}
+
+int find_min(int a[], int size, int index)
+{
+	int min = a[index];
+	int in = index;
+	for (int i = index + 1; i < size; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			in = i;
+		}
+	}
+	return in;
+}
+
+void sort(int a[], int size)
+{
+	int temp;
+	for (int i = 0; i < size; i++)
+	{
+		temp = a[i];
+		int in = find_min(a, size, i);
+		a[i] = a[in];
+		a[in] = temp;
+	}
+}
+
+void print(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << "A[" << i + 1 << "]=" << a[i] << " ";
+	}
+	cout << endl;
+}
