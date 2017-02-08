@@ -1,0 +1,46 @@
+#include<iostream>
+
+using namespace std;
+
+int search(int a[], int size, int key);
+
+void print(int a[], int size);
+
+int main()
+{
+	int key;
+	const int size = 10;
+	int a[size] = { 2,4,6,8,10,12,14,16,18,20 };
+	cout << "Enter the key: ";
+	cin >> key;
+	print(a, size);
+	search(a, size, key);
+
+	return 0;
+}
+
+int search(int a[], int size, int key)
+{
+	if (size < 0)
+	{
+		cout << "No" << endl;
+		return 0;
+	}
+
+	else if (a[size] == key)
+	{
+		cout << "Yes" << endl;
+		return size;
+	}
+
+	else return search(a, size - 1, key);
+}
+
+void print(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
