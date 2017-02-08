@@ -1,0 +1,23 @@
+#include<iostream>
+#include<ctime>
+
+using namespace std;
+
+bool equal(int n, int s);
+
+int main()
+{
+	int n, s;
+	cout << "Enter the number and sum: ";
+	cin >> n >> s;
+	if (equal(n, s)) cout << "Yes" << endl;
+	else cout << "No" << endl;
+	return 0;
+}
+
+bool equal(int n, int s)
+{
+	if (s < 0) return s = false;
+	else if (n < 10) return n == s;
+	else return equal(n / 10, s - n % 10);
+}
