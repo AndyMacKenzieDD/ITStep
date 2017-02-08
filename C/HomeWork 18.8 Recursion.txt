@@ -1,0 +1,30 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int divs(int n, int del = 2);
+
+int main()
+{
+	srand((unsigned)time(0));
+	int n;
+	cout << "Enter the nubmer: ";
+	cin >> n;
+	cout << divs(n) << endl;
+
+	return 0;
+}
+
+int divs(int n, int del)
+{
+	int count = 0;
+	if (n == 2) return 0;
+	if (del > n / 2) return 0;
+	else
+	{
+		count = divs(n, del + 1);
+		if (n%del == 0) return count + 1;
+		else return count;
+	}
+}
