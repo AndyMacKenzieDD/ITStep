@@ -1,0 +1,28 @@
+#include<iostream>
+
+using namespace std;
+
+int degree5N(int n);
+
+int main()
+{
+	unsigned n;
+	cout << "Enter the number: ";
+	cin >> n;
+	cout << degree5N(n) << endl;
+
+	return 0;
+}
+
+int degree5N(int n)
+{
+	int count;
+	if (n == 1) return 0;
+	else if (n % 5 != 0) return -1;
+	else
+	{
+		count = degree5N(n / 5);
+		if (count == -1) return -1;
+		else return (count + 1);
+	}
+}
