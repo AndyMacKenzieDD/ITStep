@@ -1,0 +1,25 @@
+#include<iostream>
+
+using namespace std;
+
+int RevPrint(int n);
+
+int main()
+{
+	int n;
+	cout << "Enter the number: ";
+	cin >> n;
+	cout << RevPrint(n) << endl;
+
+	return 0;
+}
+
+int  RevPrint(int n)
+{
+	if (n < 10) return n;
+	else
+	{
+		cout << n % 10;
+		return RevPrint(n / 10);
+	}
+}
