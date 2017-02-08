@@ -1,0 +1,22 @@
+#include<iostream>
+#include<ctime>
+
+using namespace std;
+
+int Head3(int n);
+
+int main()
+{
+	int n;
+	cout << "Enter the number: ";
+    cin >> n;
+	cout << Head3(n) << endl;
+}
+
+int Head3(int n)
+{
+	int head;
+	if (n < 10) return 30 + n;
+	else return head = Head3(n / 10) * 10 + n % 10;
+	return head;
+}
