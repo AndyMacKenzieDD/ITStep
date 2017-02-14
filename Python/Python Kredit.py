@@ -8,4 +8,4 @@ ALL = Month * m
 
 print(Month,"$")
 print(ALL, "$")
-print("Press enter to continue..")
+input("Press enter to continue..")
