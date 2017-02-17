@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+int reverse(int);
+int main()
+{
+	int n;
+	cout << "Enter the number - ";
+	cin >> n;
+	cout << reverse(n) << endl;
+}
+int reverse(int n)
+{
+	int a = 0;
+	while (n)
+	{
+		a = a * 10 + n % 10;
+		n = n / 10;
+	}
+	return a;
+}
