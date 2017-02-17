@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+bool prime(int n);
+int main()
+{
+	const int size_of_array = 100;
+	int size;
+	cout << "Enter the number of times - ";
+	cin >> size;
+	int a[size_of_array];
+	for (int i = 0; i < size; i++)
+	{
+		cout << "Enter the " << i + 1 << " number:";
+		cin >> a[i];
+	}
+	for (int i = 0; i < size; i++)
+	{
+		cout << prime(a[i]) << " ";
+	}
+	cout << endl;
+	return 0;
+}
+bool prime(int n)
+{
+	for (int i = 2; i < n / 2; i++)
+	{
+		if (n%i == 0) return false;
+	}
+	return true;
+}
