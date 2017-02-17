@@ -1,0 +1,76 @@
+#include<iostream>
+#include<ctime>
+
+using namespace std;
+
+int* min(int*, int, int);
+int* give_memory(int*, int);
+int* free_memory(int*);
+void sort(int*, int);
+void init(int*, int);
+void print(int*, int);
+
+int main()
+{
+	srand((unsigned)time(0));
+	int* a = NULL;
+	int size;
+	cout << "Enter the size of array: ";
+	cin >> size;
+	a = give_memory(a, size);
+	init(a, size);
+	print(a, size);
+	sort(a, size);
+	print(a, size);
+	a = free_memory(a);
+	return 0;
+}
+
+int* give_memory(int* a, int size)
+{
+	a = (int*)malloc(size * sizeof(int));
+	return a;
+}
+
+int* free_memory(int* a)
+{
+	free(a);
+	a = NULL;
+	return a;
+}
+
+int* min(int* a, int size, int index)
+{
+	int* pmin = &a[index];
+	for (int* i = a + index; i < a + size; i++)
+	{
+		if (*i < *pmin) pmin = i;
+	}
+	return pmin;
+}
+
+void sort(int* a, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		int *pmin = min(a, size, i);
+		swap(a[i], *pmin);
+	}
+}
+
+void init(int* a, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % 100;
+	}
+}
+
+void print(int* a, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
