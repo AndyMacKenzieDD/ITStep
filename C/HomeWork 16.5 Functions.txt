@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+void funct(int n, int p);
+int main()
+{
+	int n, p;
+	cout << "Enter the value: ";
+	cin >> n;
+	cout << "Enter the power: ";
+	cin >> p;
+	funct(n, p);
+}
+void funct(int n, int p)
+{
+	for (int i = 1; i < n; i++)
+	{
+		if (pow(i, p) != n) continue;
+		else if (pow(i, p) == n) cout << n << " = " << i << " in " << p << " power" << endl;
+		else cout << "No options" << endl;
+	}
+}
