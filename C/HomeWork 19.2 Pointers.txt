@@ -1,0 +1,23 @@
+#include<iostream>
+
+using namespace std;
+
+int* f(int* a, int* b);
+
+int main()
+{
+	int a, b;
+	int *ptra = &a, *ptrb = &b;
+	cout << "Enter the values: ";
+	cin >> a >> b;
+	cout << "The value " << *f(ptra, ptrb) << " is less and his pointer is " << f(ptra,ptrb) << endl;
+
+	return 0;
+}
+
+int* f(int* a, int* b)
+{
+	
+	if (*a > *b) return b;
+	else return a;
+}
