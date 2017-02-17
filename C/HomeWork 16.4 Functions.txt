@@ -1,0 +1,68 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+void init(int a[], int size, int del);
+void initX(int a[], int b[], int c[], int x[], int y[], int size, int a_max, int b_max, int c_max);
+int find_max(int a[], int size);
+void print(int a[], int size);
+int main()
+{
+	srand((unsigned)time);
+	const int size = 10;
+	int a[size], b[size], c[size];
+	int x[size], y[size];
+	int del = 100;
+	init(a, size, del);
+	init(b, size, del);
+	init(c, size, del);
+	int a_max = find_max(a, size);
+	int b_max = find_max(b, size);
+	int c_max = find_max(c, size);
+	initX(a, b, c, x, y, size, a_max, b_max, c_max);
+	cout << "A array: ";
+	print(a, size);
+	cout << "B array: ";
+	print(b, size);
+	cout << "C array: ";
+	print(c, size);
+	cout << "X array: ";
+	print(x, size);
+	cout << "Y array: ";
+	print(y, size);
+	return 0;
+}
+void init(int a[], int size, int del)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % del;
+	}
+}
+int find_max(int a[], int size)
+{
+	int max = a[0];
+	for (int i = 0; i < size; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+	}
+	return max;
+}
+void initX(int a[], int b[], int c[], int x[], int y[], int size, int a_max, int b_max, int c_max)
+{
+	for (int i = 0; i < size; i++)
+	{
+		x[i] = (a_max + b_max) - (a[i] + b[i]) / 2;
+		y[i] = (b_max + c_max) - (b[i] + c[i]) / 2;
+	}
+}
+void print(int a[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
