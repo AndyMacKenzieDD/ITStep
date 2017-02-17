@@ -1,0 +1,46 @@
+#include<iostream>
+#include<ctime>
+using namespace std;
+
+void print(int *a, int size);
+void init(int *a, int size);
+long long sum(int *a, int size);
+
+int main()
+{
+	srand((unsigned)time(0));
+	const int size = 10;
+	int a[size];
+	int *ptra = a;
+	init(ptra, size);
+	print(ptra, size);
+	cout << "The product of all elements of the array: " << sum(ptra, size) << endl;
+	return 0;
+}
+
+void print(int *a, int size)
+{
+	for (int i = 0; i < size; a++, i++)
+	{
+		cout << "A[" << i + 1 << "] = " << *a << " ";
+	}
+	cout << endl;
+}
+
+void init(int *a, int size)
+{
+	for (int i = 0; i < size; a++, i++)
+	{
+		*a = rand() % 121 - 44;
+	}
+}
+
+long long sum(int *a, int size)
+{
+	long long sum = 1;
+	for (int i = 0; i < size; a++, i++)
+	{
+		sum *= *a;
+	}
+	return sum;
+}
