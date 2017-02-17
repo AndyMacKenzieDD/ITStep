@@ -1,0 +1,85 @@
+#include<iostream>
+#include<ctime>
+
+using namespace std;
+
+int* give_memory(int*, int);
+int* free_memory(int*);
+int* bin_search(int*, int, int);
+void sort(int*, int);
+void init(int*, int);
+void print(int*, int);
+
+int main()
+{
+	srand((unsigned)time(0));
+	int *a = NULL, size;
+	cout << "Enter the size of array: ";
+	cin >> size;
+	a = give_memory(a, size);
+	init(a, size);
+	print(a, size);
+	sort(a, size);
+	print(a, size);
+	a = free_memory(a);
+
+	return 0;
+}
+
+int* give_memory(int* a , int size)
+{
+	a = (int*)malloc(size * sizeof(int));
+	return a;
+}
+
+int* free_memory(int* a)
+{
+	free(a);
+	a = NULL;
+	return a;
+}
+
+int* bin_search(int* a, int size, int key)
+{
+	int right = size;
+	int left = 0;
+	while (left < right)
+	{
+		int mid = (left + right) / 2;
+		if (key < a[mid]) right = mid;
+		else left = mid + 1;
+	}
+	return a + left;
+}
+
+void sort(int* a, int size)
+{
+	int *temp;
+	for (int i = 1; i < size; i++)
+	{
+		int b = a[i];
+		temp = bin_search(a, i, a[i]);
+		for (int j = i; a + j != temp; j--)
+		{
+			a[j] = a[j - 1];
+		}
+		*temp = b;
+	}
+}
+
+void init(int* a, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		a[i] = rand() % 100;
+	}
+}
+
+void print(int* a, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
