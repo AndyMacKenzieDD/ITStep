@@ -1,0 +1,105 @@
+#include<iostream>
+#include<ctime>
+
+using namespace std;
+
+int* give_memory(int*, int);
+int* free_memory(int*);
+void init_array(int*, int);
+void print_array(int*, int);
+int* add_back(int*, int*, int);
+int* add_value(int*, int*, int, int);
+int* remove(int*, int*, int);
+
+int main()
+{
+	int *array = NULL, size;
+	int back;
+	int val;
+	int pos;
+	cout << "Enter the size of array: ";
+	cin >> size;
+	array = give_memory(array, size);
+	init_array(array, size);
+	print_array(array, size);
+	cout << "Enter the number to be added to the end of the array: ";
+	cin >> back;
+	array = add_back(array, &size, back);
+	print_array(array, size);
+	cout << "Enter the number and position you want to add to the array: ";
+	cin >> val >> pos;
+	array = add_value(array, &size, val, pos);
+	print_array(array, size);
+	cout << "Enter the position you want to remove from the array: ";
+	cin >> pos;
+	array = remove(array, &size, pos);
+	print_array(array, size);
+	array = free_memory(array);
+	return 0;
+}
+
+int* give_memory(int*A, int size)
+{
+	A = (int*)malloc(size * sizeof(int));
+	return A;
+}
+int* free_memory(int* A)
+{
+	free(A);
+	A = NULL;
+	return A;
+}
+void init_array(int* A, int size)
+{
+	for (int *i = A; i < A + size; i++)
+	{
+		*i = rand() % 100;
+	}
+}
+void print_array(int* A, int size)
+{
+	for (int *i = A; i < A + size; i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+}
+int* add_back(int* A, int* size, int value)
+{
+	int *new_A = NULL;
+	new_A = give_memory(new_A, *size + 1);
+	for (int i = 0; i < *size; i++)
+	{
+		new_A[i] = A[i];
+	}
+	new_A[*size] = value;
+	(*size)++;
+	free_memory(A);
+	return new_A;
+}
+int* add_value(int* A, int* size, int value, int index)
+{
+	int *new_A = NULL;
+	new_A = give_memory(new_A, *size + 1);
+	for (int i = 0; i < index; i++)
+	{
+		new_A[i] = A[i];
+	}
+	new_A[index] = value;
+	(*size)++;
+	for (int i = index + 1; i < *size; i++)
+	{
+		new_A[i] = A[i - 1];
+	}
+	free_memory(A);
+	return new_A;
+}
+int* remove(int* A, int* size, int value)
+{
+	for (int i = value + 1; i < *size; i++)
+	{
+		A[i - 1] = A[i];
+	}
+	(*size)--;
+	return A;
+}
